@@ -7,25 +7,28 @@ import { FeedContext } from "../context/FeedState";
 const AddGif = () => {
   const { gifToggle, setGifToggle, gif, setGif, setSelectedGif } =
     useContext(FeedContext);
-
   const [gifSearch, setGifSearch] = useState("");
 
-  const getGifApi = async () => {
-    const { data } = await axios.get(
-      "https://api.giphy.com/v1/gifs/trending?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5"
-    );
+  var GifUrl =
+    "https://api.giphy.com/v1/gifs/trending?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5";
+
+  const getGifApi = async (ApiUrl) => {
+    const { data } = await axios.get(ApiUrl);
     return data;
   };
 
   useEffect(() => {
     const getAPIData = async () => {
-      const res = await getGifApi();
+      if (gifSearch) {
+        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5&q=${gifSearch}`;
+      }
+      const res = await getGifApi(GifUrl);
       if (res) {
         setGif(res.data);
       }
     };
     getAPIData();
-  }, []);
+  }, [gifSearch]);
 
   const handleClick = (url) => {
     setSelectedGif(url);

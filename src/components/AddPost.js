@@ -77,7 +77,7 @@ const InputBox = styled.div`
 `;
 
 const GifStyled = styled.div`
-  padding: 2rem 2rem 1rem 2rem;
+  padding: 0 2rem 1rem 2rem;
   border-bottom: 1px solid #e9ecef;
 
   button {
