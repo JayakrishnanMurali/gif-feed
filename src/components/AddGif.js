@@ -9,9 +9,9 @@ const AddGif = () => {
     useContext(FeedContext);
   const [gifSearch, setGifSearch] = useState("");
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  // const API_KEY = process.env.REACT_APP_API_KEY;
 
-  var GifUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=5`;
+  var GifUrl = `https://api.giphy.com/v1/gifs/trending?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5`;
 
   const getGifApi = async (ApiUrl) => {
     const { data } = await axios.get(ApiUrl);
@@ -21,7 +21,7 @@ const AddGif = () => {
   useEffect(() => {
     const getAPIData = async () => {
       if (gifSearch) {
-        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
+        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5&q=${gifSearch}`;
       }
       const res = await getGifApi(GifUrl);
       if (res) {
