@@ -89,6 +89,13 @@ const GifContainer = styled.div`
   border-radius: 10px;
   width: 30rem;
   padding: 2rem;
+  @media (max-width: 740px) {
+    width: 25rem;
+    padding: 1rem;
+  }
+  @media (max-width: 540px) {
+    width: 18rem;
+  }
   input {
     background-color: #e9ecef;
     border: none;
@@ -117,6 +124,7 @@ const GifImage = styled.div`
   cursor: pointer;
   overflow-y: scroll;
   height: 20rem;
+
   img {
     object-fit: contain;
     width: 100%;

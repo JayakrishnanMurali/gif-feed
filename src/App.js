@@ -23,4 +23,14 @@ const AppStyled = styled.section`
   max-width: 978px;
   margin: auto;
   margin-bottom: 2rem;
+
+  @media (max-width: 1024px) {
+    max-width: 678px;
+  }
+  @media (max-width: 740px) {
+    max-width: 500px;
+  }
+  @media (max-width: 540px) {
+    max-width: 300px;
+  }
 `;

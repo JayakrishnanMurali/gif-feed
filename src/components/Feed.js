@@ -36,5 +36,9 @@ const ImageStyled = styled.div`
     object-fit: contain;
     width: 100%;
     height: 30rem;
+    @media (max-width: 540px) {
+      object-fit: cover;
+      height: 15rem;
+    }
   }
 `;

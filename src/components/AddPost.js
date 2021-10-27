@@ -64,6 +64,9 @@ const ImagePreview = styled.div`
   img {
     object-fit: cover;
     padding: 2rem 2rem 0 2rem;
+    @media (max-width: 540px) {
+      height: 16rem;
+    }
   }
 `;
 
