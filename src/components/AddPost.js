@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { FeedContext } from "../context/FeedState";
 
 const AddPost = () => {
+  const { feedData, setFeedData } = useContext(FeedContext);
+
+  const [description, setDescription] = useState("");
+  const createPost = () => {
+    const feedCombined = {
+      title: description,
+      image:
+        "https://www.positronx.io/wp-content/uploads/2019/09/react-autocomplete-6802-01.gif",
+    };
+
+    setFeedData([...feedData, feedCombined]);
+  };
+
   return (
     <AddPostStyled>
       <InputBox>
-        <input type="text" placeholder="What's on your mind?" />
+        <input
+          type="text"
+          placeholder="What's on your mind?"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </InputBox>
       <GifStyled>
         <button>Add GIF</button>
       </GifStyled>
-      <PostButton>
-        <button>Post </button>
+      <PostButton onClick={() => createPost()}>
+        <button>Post</button>
       </PostButton>
     </AddPostStyled>
   );
