@@ -7,7 +7,7 @@ const FeedState = ({ children }) => {
 
   const [gifToggle, setGifToggle] = useState(false);
 
-  const [gif, setGif] = useState([]);
+  const [gif, setGif] = useState([{}]);
 
   const [selectedGif, setSelectedGif] = useState([]);
 
