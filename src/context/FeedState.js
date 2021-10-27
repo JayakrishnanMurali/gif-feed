@@ -9,6 +9,8 @@ const FeedState = ({ children }) => {
 
   const [gif, setGif] = useState([]);
 
+  const [selectedGif, setSelectedGif] = useState([]);
+
   return (
     <FeedContext.Provider
       value={{
@@ -18,6 +20,8 @@ const FeedState = ({ children }) => {
         setGifToggle,
         gif: gif,
         setGif,
+        selectedGif: selectedGif,
+        setSelectedGif,
       }}
     >
       {children}

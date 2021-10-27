@@ -4,18 +4,25 @@ import { FeedContext } from "../context/FeedState";
 import AddGif from "./AddGif";
 
 const AddPost = () => {
-  const { feedData, setFeedData, gifToggle, setGifToggle } =
-    useContext(FeedContext);
+  const {
+    feedData,
+    setFeedData,
+    gifToggle,
+    setSelectedGif,
+    setGifToggle,
+    selectedGif,
+  } = useContext(FeedContext);
 
   const [description, setDescription] = useState("");
   const createPost = () => {
     const feedCombined = {
       title: description,
-      image:
-        "https://www.positronx.io/wp-content/uploads/2019/09/react-autocomplete-6802-01.gif",
+      image: selectedGif,
     };
 
     setFeedData([...feedData, feedCombined]);
+    setDescription("");
+    setSelectedGif("");
   };
   return (
     <AddPostStyled>
@@ -27,6 +34,11 @@ const AddPost = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </InputBox>
+      {selectedGif && (
+        <ImagePreview>
+          <img src={selectedGif} alt="" />
+        </ImagePreview>
+      )}
       <GifStyled onClick={() => setGifToggle(!gifToggle)}>
         <button>Add GIF</button>
       </GifStyled>
@@ -43,6 +55,12 @@ export default AddPost;
 const AddPostStyled = styled.div`
   margin-top: 3rem;
   background-color: #ffffff;
+`;
+const ImagePreview = styled.div`
+  img {
+    object-fit: cover;
+    padding: 2rem;
+  }
 `;
 
 const InputBox = styled.div`

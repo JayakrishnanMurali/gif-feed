@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
 
 const AddGif = () => {
-  const { gifToggle, setGifToggle, gif, setGif } = useContext(FeedContext);
+  const { gifToggle, setGifToggle, gif, setGif, setSelectedGif } =
+    useContext(FeedContext);
 
   const [gifSearch, setGifSearch] = useState("");
 
@@ -26,6 +27,11 @@ const AddGif = () => {
     getAPIData();
   }, []);
 
+  const handleClick = (url) => {
+    setSelectedGif(url);
+    setGifToggle(!gifToggle);
+  };
+
   return (
     <AddGifyStyled>
       <GifContainer>
@@ -44,7 +50,7 @@ const AddGif = () => {
               },
               id,
             }) => (
-              <img key={id} src={url} alt="" />
+              <img key={id} src={url} alt="" onClick={() => handleClick(url)} />
             )
           )}
         </GifImage>
