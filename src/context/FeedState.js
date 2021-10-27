@@ -7,6 +7,8 @@ const FeedState = ({ children }) => {
 
   const [gifToggle, setGifToggle] = useState(false);
 
+  const [gif, setGif] = useState([]);
+
   return (
     <FeedContext.Provider
       value={{
@@ -14,6 +16,8 @@ const FeedState = ({ children }) => {
         setFeedData,
         gifToggle: gifToggle,
         setGifToggle,
+        gif: gif,
+        setGif,
       }}
     >
       {children}

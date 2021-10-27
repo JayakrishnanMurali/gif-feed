@@ -1,14 +1,53 @@
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect } from "react";
+import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
 
 const AddGif = () => {
-  const { gifToggle, setGifToggle } = useContext(FeedContext);
+  const { gifToggle, setGifToggle, gif, setGif } = useContext(FeedContext);
+
+  const [gifSearch, setGifSearch] = useState("");
+
+  const getGifApi = async () => {
+    const { data } = await axios.get(
+      "https://api.giphy.com/v1/gifs/trending?api_key=iXoDdQEw5vxLoWWpv3vYGU8HeotSdFZL&limit=5"
+    );
+    return data;
+  };
+
+  useEffect(() => {
+    const getAPIData = async () => {
+      const res = await getGifApi();
+      if (res) {
+        setGif(res.data);
+      }
+    };
+    getAPIData();
+  }, []);
 
   return (
     <AddGifyStyled>
       <GifContainer>
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={gifSearch}
+          onChange={(e) => setGifSearch(e.target.value)}
+        />
+
+        <GifImage>
+          {gif.map(
+            ({
+              images: {
+                downsized: { url },
+              },
+              id,
+            }) => (
+              <img key={id} src={url} alt="" />
+            )
+          )}
+        </GifImage>
 
         <CancelButton onClick={() => setGifToggle(!gifToggle)}>
           Cancel
@@ -59,4 +98,16 @@ const CancelButton = styled.button`
   cursor: pointer;
   width: 6rem;
   padding: 0.5rem 1rem;
+`;
+
+const GifImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  overflow-y: scroll;
+  height: 20rem;
+  img {
+    object-fit: contain;
+    width: 100%;
+  }
 `;
