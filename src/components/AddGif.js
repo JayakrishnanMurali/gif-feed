@@ -46,7 +46,7 @@ const AddGif = () => {
           onChange={(e) => setGifSearch(e.target.value)}
         />
 
-        <GifImage>
+        {/* <GifImage>
           {gif.map(
             ({
               images: {
@@ -57,7 +57,7 @@ const AddGif = () => {
               <img key={id} src={url} alt="" onClick={() => handleClick(url)} />
             )
           )}
-        </GifImage>
+        </GifImage> */}
 
         <CancelButton onClick={() => setGifToggle(!gifToggle)}>
           Cancel
