@@ -20,9 +20,9 @@ const AddGif = () => {
 
   useEffect(() => {
     const getAPIData = async () => {
-      if (gifSearch) {
-        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
-      }
+      // if (gifSearch) {
+      //   GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
+      // }
       const res = await getGifApi(GifUrl);
       if (res) {
         setGif(res.data);
@@ -46,7 +46,7 @@ const AddGif = () => {
           onChange={(e) => setGifSearch(e.target.value)}
         />
 
-        {/* <GifImage>
+        <GifImage>
           {gif.map(
             ({
               images: {
@@ -57,7 +57,7 @@ const AddGif = () => {
               <img key={id} src={url} alt="" onClick={() => handleClick(url)} />
             )
           )}
-        </GifImage> */}
+        </GifImage>
 
         <CancelButton onClick={() => setGifToggle(!gifToggle)}>
           Cancel
