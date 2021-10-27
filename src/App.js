@@ -5,14 +5,14 @@ import Feed from "./components/Feed";
 import { FeedContext } from "./context/FeedState";
 
 function App() {
-  const { feedData, setFeedData } = useContext(FeedContext);
-
-  console.log(feedData);
+  const { feedData } = useContext(FeedContext);
 
   return (
     <AppStyled>
       <AddPost />
-      <Feed text={"description"} image={""} />
+      {feedData.map((item, i) => (
+        <Feed key={i} text={item.title} image={item.image} />
+      ))}
     </AppStyled>
   );
 }
