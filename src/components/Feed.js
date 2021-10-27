@@ -33,6 +33,8 @@ const TitleStyled = styled.div`
 `;
 const ImageStyled = styled.div`
   img {
-    object-fit: cover;
+    object-fit: contain;
+    width: 100%;
+    height: 30rem;
   }
 `;

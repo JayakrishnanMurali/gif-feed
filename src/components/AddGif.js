@@ -49,7 +49,7 @@ const AddGif = () => {
           {gif.map(
             ({
               images: {
-                downsized: { url },
+                original: { url },
               },
               id,
             }) => (
@@ -113,6 +113,7 @@ const GifImage = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  cursor: pointer;
   overflow-y: scroll;
   height: 20rem;
   img {

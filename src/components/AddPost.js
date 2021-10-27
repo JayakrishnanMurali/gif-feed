@@ -15,6 +15,10 @@ const AddPost = () => {
 
   const [description, setDescription] = useState("");
   const createPost = () => {
+    if (!description) {
+      return alert("Please enter a title!");
+    }
+
     const feedCombined = {
       title: description,
       image: selectedGif,
@@ -59,7 +63,7 @@ const AddPostStyled = styled.div`
 const ImagePreview = styled.div`
   img {
     object-fit: cover;
-    padding: 2rem;
+    padding: 2rem 2rem 0 2rem;
   }
 `;
 
@@ -77,7 +81,7 @@ const InputBox = styled.div`
 `;
 
 const GifStyled = styled.div`
-  padding: 0 2rem 1rem 2rem;
+  padding: 2rem 2rem 1rem 2rem;
   border-bottom: 1px solid #e9ecef;
 
   button {
