@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
+import AddGif from "./AddGif";
 
 const AddPost = () => {
-  const { feedData, setFeedData } = useContext(FeedContext);
+  const { feedData, setFeedData, gifToggle, setGifToggle } =
+    useContext(FeedContext);
 
   const [description, setDescription] = useState("");
   const createPost = () => {
@@ -15,7 +17,6 @@ const AddPost = () => {
 
     setFeedData([...feedData, feedCombined]);
   };
-
   return (
     <AddPostStyled>
       <InputBox>
@@ -26,9 +27,10 @@ const AddPost = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </InputBox>
-      <GifStyled>
+      <GifStyled onClick={() => setGifToggle(!gifToggle)}>
         <button>Add GIF</button>
       </GifStyled>
+      {gifToggle && <AddGif />}
       <PostButton onClick={() => createPost()}>
         <button>Post</button>
       </PostButton>
