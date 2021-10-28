@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
@@ -20,7 +20,7 @@ const AddGif = () => {
 
   useEffect(() => {
     const getAPIData = async () => {
-      if (gifSearch) {
+      if (gifSearch !== "") {
         GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
       }
       const res = await getGifApi(GifUrl);
