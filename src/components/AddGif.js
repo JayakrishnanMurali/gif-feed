@@ -27,17 +27,16 @@ const AddGif = () => {
 
   useEffect(() => {
     const getAPIData = async () => {
-      // if (gifSearch !== "") {
-      //   GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
-      // }
+      if (gifSearch !== "") {
+        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
+      }
       const res = await getGifApi(GifUrl);
       if (res) {
         setGif(res.data);
       }
     };
     getAPIData();
-    // }, [gifSearch]);
-  }, []);
+  }, [gifSearch]);
 
   const handleClick = (url) => {
     setSelectedGif(url);
