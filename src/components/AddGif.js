@@ -5,9 +5,16 @@ import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
 
 const AddGif = () => {
-  const { gifToggle, setGifToggle, gif, setGif, setSelectedGif } =
-    useContext(FeedContext);
-  const [gifSearch, setGifSearch] = useState("");
+  const {
+    gifToggle,
+    setGifToggle,
+    gif,
+    setGif,
+    setSelectedGif,
+    gifSearch,
+    setGifSearch,
+  } = useContext(FeedContext);
+  // const [gifSearch, setGifSearch] = useState("");
 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
