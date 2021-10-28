@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
@@ -7,7 +7,7 @@ import { FeedContext } from "../context/FeedState";
 const AddGif = () => {
   const { gifToggle, setGifToggle, gif, setGif, setSelectedGif } =
     useContext(FeedContext);
-  const [gifSearch, setGifSearch] = useState("");
+  // const [gifSearch, setGifSearch] = useState("");
 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -20,16 +20,17 @@ const AddGif = () => {
 
   useEffect(() => {
     const getAPIData = async () => {
-      if (gifSearch !== "") {
-        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
-      }
+      // if (gifSearch !== "") {
+      //   GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
+      // }
       const res = await getGifApi(GifUrl);
       if (res) {
         setGif(res.data);
       }
     };
     getAPIData();
-  }, [gifSearch]);
+    // }, [gifSearch]);
+  }, []);
 
   const handleClick = (url) => {
     setSelectedGif(url);
@@ -39,12 +40,12 @@ const AddGif = () => {
   return (
     <AddGifyStyled>
       <GifContainer>
-        <input
+        {/* <input
           type="text"
           placeholder="Search"
           value={gifSearch}
           onChange={(e) => setGifSearch(e.target.value)}
-        />
+        /> */}
 
         <GifImage>
           {gif.map(
