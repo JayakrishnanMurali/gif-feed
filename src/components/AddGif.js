@@ -7,7 +7,7 @@ import { FeedContext } from "../context/FeedState";
 const AddGif = () => {
   const { gifToggle, setGifToggle, gif, setGif, setSelectedGif } =
     useContext(FeedContext);
-  // const [gifSearch, setGifSearch] = useState("");
+  const [gifSearch, setGifSearch] = useState("");
 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -40,12 +40,12 @@ const AddGif = () => {
   return (
     <AddGifyStyled>
       <GifContainer>
-        {/* <input
+        <input
           type="text"
           placeholder="Search"
           value={gifSearch}
           onChange={(e) => setGifSearch(e.target.value)}
-        /> */}
+        />
 
         <GifImage>
           {gif.map(
