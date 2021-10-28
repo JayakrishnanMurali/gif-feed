@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useContext, useEffect } from "react";
-import { useState } from "react/cjs/react.development";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedState";
 
@@ -14,11 +13,10 @@ const AddGif = () => {
     gifSearch,
     setGifSearch,
   } = useContext(FeedContext);
-  // const [gifSearch, setGifSearch] = useState("");
 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
-  var GifUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=5`;
+  var GifUrl = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`;
 
   const getGifApi = async (ApiUrl) => {
     const { data } = await axios.get(ApiUrl);
@@ -28,7 +26,7 @@ const AddGif = () => {
   useEffect(() => {
     const getAPIData = async () => {
       if (gifSearch !== "") {
-        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=5&q=${gifSearch}`;
+        GifUrl = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=20&q=${gifSearch}`;
       }
       const res = await getGifApi(GifUrl);
       if (res) {
@@ -57,7 +55,7 @@ const AddGif = () => {
           {gif.map(
             ({
               images: {
-                original: { url },
+                downsized: { url },
               },
               id,
             }) => (
@@ -77,6 +75,7 @@ const AddGif = () => {
 export default AddGif;
 
 const AddGifyStyled = styled.div`
+  height: 100vh;
   background-color: rgb(0, 0, 0, 0.6);
   position: absolute;
   top: 0;
